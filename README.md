@@ -49,26 +49,83 @@ SpringBoot, SpringSecurity, Socket.io, MySQL, Redis, AWS S3, Github Actions,  AW
 </details>
 
 ## Trouble Shooting
-<details>
-<summary>Front-End</summary>
-<div markdown="1">   
-문제 : 코인 종목 교체 선택 시 기존에 구독하고 있던 종목에 대한 실시간 데이터 구독이 해제되지 않아 차트에 2가지 종목에 대한 현재가 정보 입력</br>
-원인 : 구독 상태에서 데이터가 수신되는 시점에 구독 해제를 위한 subsrcibe ID를 교체하도록 되어 있어 데이터가 수신되지 않을 경우 useRef의 ID 교체 불가</br>
-해결 : 구독 시작 시점에 ID 정보를 useRef에 저장 시킨 후 구독하여 데이터 수신이 없어도 구독 해제가 정상적으로 이루어질 수 있도록 변경</br></br>
+<details markdown="1">
+<summary>N+1 문제</summary>
   
-문제 : 모의투자 페이지 이용 시 채팅 및 현재가 정보가 페이지 로드 후 새로고침해야 정상 동작</br>
-원인 : 웹소켓 커넥트가 완료되기 전 구독을 시도하는 경우 구독이 이루어지지 않은 상태로 유지</br>
-해결 : Redux에 웹소켓 연결 여부를 체크하는 상태 값(chkConneted)를 추가하여 상태 변경이 되는 경우 데이터를 수신하는 컴포넌트에서 구독을 진행하도록 개선</br>
+### ✅ 문제상황
 
-</div>
+> 유저 랭킹리스트 데이터를 뽑기 위해 findAll 풀스캔 조회할 경우 보유 코인 정보(하위엔티티)를 찾는 쿼리가 N개 추가로 발생.  
+
+### ✅ 해결방안
+
+> 1. fetch join을 이용해 user정보를 찾을 때 coin 정보를 같이 찾는다.
+> 2. @EntityGraph 어노테이션을 이용해 user 정보를 찾을 때 coin 정보를 같이 찾는다.
+
+### ✅ 결과
+> 해결 전 
+![image](https://user-images.githubusercontent.com/95765861/173232176-d2ac8cf1-b49b-4297-a2af-4ae8f95f9ca9.png)
+
+> 해결 후
+![image1](https://user-images.githubusercontent.com/95765861/173232182-0f68ba89-d3b7-482c-962c-d085a32cbd4c.png)
+
+> 6,000 row 기준 49,198ms 에서 505ms 로 성능 개선
+
+</details>
+<details markdown="1">
+<summary>코인 매수, 매도 동시 api 요청 문제</summary>
+  
+### ✅ 문제상황
+
+> 코인 구매, 판매 api  테스트 중,  동시 요청이 들어오면 해당 유저 보유 계좌 금액 데이터에 변질 문제 발생.  
+
+### ✅ 해결방안
+
+> 1. JPA를 사용하면 READ COMMITTED 이상의 격리 수준이 필요할 때 비관적 락 혹은 낙관적 락을 선택해야 한다.
+
+### ✅ 결과
+> 총 판매 갯수 한정 되어 있는 상품과는 달리 한도가 없는 코인 구매는 충돌 발생 확률이 낮다고 판단되어  버전 관리를 통한 낙관적 락 적용   
+![image](https://user-images.githubusercontent.com/95765861/173232723-aed2440f-1f07-46c9-ac4a-0127521ca17b.png)
+
+
+</details>
+<details markdown="1">
+<summary>double 자료형 연산 오차</summary>
+  
+### ✅ 문제상황
+
+>12.23와 34.45을 더했으니 결과로 46.68을 예상했겠지만, 실제로는 46.68000000000001가 출력되는 문제 발생    
+![image](https://user-images.githubusercontent.com/95765861/173233250-f0018598-ab8d-4b37-94f7-cb3f0b47deda.png) 
+
+### ✅ 해결방안
+
+> 부동 소수점 표현 방식의 오차를 해결하기 위해 자바에서는 BigDecimal 클래스를 제공한다.
+
+
+### ✅ 결과
+> 46.68오차 범위 해결  
+![image](https://user-images.githubusercontent.com/95765861/173233432-d750ae77-f576-4b61-90ba-c090fbf8442d.png)
+
+
+
 </details>
 
-<details>
-<summary>Back-End</summary>
-<div markdown="1">   
+<details markdown="1">
+<summary>Jasypt를 이용한 암호화 적용시 발생한 문제</summary>
   
-</div>
+### ✅ 문제상황
+
+> git actions를 활용한 CI/CD 구현 중에 주요 정보가 들어있는 application.properties를 github push 해야되는 상황
+
+### ✅ 해결방안
+
+> 1. Jasypt 클래스를 이용하여 암호화
+
+### ✅ 결과
+> 암호화 결과  
+![image](https://user-images.githubusercontent.com/95765861/173232641-8a10a8aa-f039-4310-b78f-30f9e0e8c187.png)
+
 </details>
+
 
 ## UI
 

@@ -16,7 +16,7 @@
 
 corinne는 코인 초보자분들이 쉽고 재미있게 접할 수 있도록 다양한 기능들을 제공하는 코인 모의투자 서비스입니다.
 
-### 👉 자세히 보기: [노션링크](https://silken-hip-c47.notion.site/corinne-dd258f60090745c9849f9462080514b2)
+### 👉 자세히 보기: [노션링크](https://believed-tuba-3d0.notion.site/corinne-2a77c90129b646baacbc3365845d135a)
 
 <br/>
 
@@ -33,6 +33,18 @@ next.js, vercel, redux, tailwindCSS, PostCSS, sockjs, stomp, ApexChart, Chart.js
 #### :boom: Back-end
 
 SpringBoot, SpringSecurity, Socket.io, MySQL, Redis, AWS S3, Github Actions,  AWS CodeDeploy,  NGINX,  AWS EC2
+
+## API 설계
+
+#### 👉 자세히 보기: [노션링크](https://www.notion.so/a0ea3128fff149368cce366a0ee1462d?v=d003aab079944f109f825390bff57adc)
+
+## ERD
+<details>
+<summary>여기를 눌러주세요</summary>
+<div markdown="1">
+  ![ERD](https://user-images.githubusercontent.com/95765861/173230013-383dbe45-3e14-4af1-81b4-4b000da151f4.png)
+</div>
+</details>
 
 ## Trouble Shooting
 <details>

@@ -42,7 +42,9 @@ SpringBoot, SpringSecurity, Socket.io, MySQL, Redis, AWS S3, Github Actions,  AW
 <details>
 <summary>여기를 눌러주세요</summary>
 <div markdown="1">
-  ![ERD](https://user-images.githubusercontent.com/95765861/173230013-383dbe45-3e14-4af1-81b4-4b000da151f4.png)
+  
+![ERD](https://user-images.githubusercontent.com/95765861/173230013-383dbe45-3e14-4af1-81b4-4b000da151f4.png)
+  
 </div>
 </details>
 

@@ -127,7 +127,11 @@ SpringBoot, SpringSecurity, Socket.io, MySQL, Redis, AWS S3, Github Actions,  AW
 </details>
 
 
-## UI
+## UI 및 시연영상
+
+[![Video Label](http://img.youtube.com/vi/2N93JgdN3i0/0.jpg)](https://youtu.be/2N93JgdN3i0)
+https://www.youtube.com/watch?v=2N93JgdN3i0
+
 
 <details>
 <summary>여기를 눌러주세요</summary>
